@@ -9,7 +9,7 @@ class CurrencyConverter():
         self.model = Model()
         self.view = View(self, CURRENCIES)
 
-    def callback(self, c_in, v_in, c_out, widget_out, log_text):
+    def convert(self, c_in, v_in, c_out, widget_out, log_text):
 
         value = self.model.convert(c_in, v_in, c_out, log_text)
         widget_out.delete(0, "end")
