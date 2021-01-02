@@ -7,7 +7,7 @@ class CurrencyConversionSnapshot:
         self.cur_in = cur_in
         self.cur_out = cur_out
         self.conversion = conversion
-        self.timestampe = timestamp
+        self.timestamp = timestamp
 
 
 class Model:
@@ -15,12 +15,16 @@ class Model:
         self.currencies = controller.CURRENCIES
         self.fx = self._create_fx()
 
-    def convert(self, currency_in, value_in, currency_out, log_text):
+    def convert(self, currency_in, value_in, currency_out):
         try:
-            value_in = int(value_in)
-        except:
-            log_text.delete(0, "end")
-            log_text.insert(0, 'Invalid Value. Must be a number')
+            value_in = float(value_in)
+
+            for snapshot in self.fx:
+                if snapshot.cur_in == currency_in and snapshot.cur_out == currency_out:
+                    if (datetime.datetime.now() - snapshot.timestamp) < datetime.timedelta(20):
+                        return value_in * snapshot.conversion
+        except ValueError:
+            return 'Must be a decimal.'
 
     def _create_fx(self):
         fxs = []

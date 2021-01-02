@@ -14,7 +14,6 @@ class View:
         self.value_in = None
         self.value_out = None
         self.convert = None
-        self.log_text = None
         self._create_window()
 
     def _create_window(self):
@@ -22,7 +21,6 @@ class View:
         self.root = tk.Tk()
         self._create_intro_text()
         self._create_currency_selector()
-        self._create_log_text()
         self._create_convert_button()
         tk.mainloop()
 
@@ -35,11 +33,16 @@ class View:
 
     def _create_currency_selector(self):
         ''' Creates Currency Selector for User '''
-        variable = tk.StringVar(self.root)
-        variable.set('GBP')
 
-        self.currency_in = tk.OptionMenu(self.root, variable, *self.choices)
-        self.currency_out = tk.OptionMenu(self.root, variable, *self.choices)
+        self.currency_in_selector = tk.StringVar(self.root)
+        self.currency_in_selector.set('GBP')
+        self.currency_out_selector = tk.StringVar(self.root)
+        self.currency_out_selector.set('GBP')
+
+        self.currency_in = tk.OptionMenu(
+            self.root, self.currency_in_selector, *self.choices)
+        self.currency_out = tk.OptionMenu(
+            self.root, self.currency_out_selector, *self.choices)
 
         label_in = tk.Label(text='Convert from:')
         label_out = tk.Label(text='Convert to:')
@@ -59,20 +62,15 @@ class View:
         self.convert = tk.Button(
             self.root,
             text='Convert',
-            command=partial(self.controller.convert,
-                            self.currency_in,
-                            self.value_in,
-                            self.currency_out,
-                            self.value_out,
-                            [self.log_text]
-                            )
+            command=partial(self._convert)
         )
         self.convert.pack()
         self.value_out.pack()
 
-    def _create_log_text(self):
-        ''' Creates a log text for User '''
-        self.log_text = tk.Text(self.root, height=2, width=30)
-        self.log_text.insert(
-            tk.END, "Please select fields.")
-        self.log_text.pack(side=tk.BOTTOM)
+    def _convert(self):
+        self.controller.convert(
+            self.currency_in_selector.get(),
+            self.value_in.get(),
+            self.currency_out_selector.get(),
+            self.value_out
+        )
