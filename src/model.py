@@ -19,7 +19,7 @@ class Model:
         string = None
         time = None
         try:
-            if datetime.datetime.now() > self.fx[0].timestamp:
+            if datetime.datetime.now() - self.fx[0].timestamp > datetime.timedelta(days=1):
                 self._update_cache()
 
             value_in = float(value_in)
