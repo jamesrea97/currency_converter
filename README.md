@@ -1,13 +1,15 @@
 # A Simple Currency Converter
 
-This project is a simple webs-scrapping Python-based Currency Converter that uses `tkinter` library for the UI, displayed below:
+This project is a simple webs-scrapping Python-based Currency Converter (over 30 currencies).
+
+Its UI uses `tkinter` library for the UI as displayed below:
 
 The FX is cached until the next request exceeds one day. The information comes from:
 https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
 
 ## Project structure
 
-The App usesa MVC architecture to improve readability.
+The App usesa MVC architecture to improve readability, with driver found in `main.py`
 
 ## Testing
 
@@ -23,9 +25,9 @@ Python=3.9
 
 For Webscrapping, we used:
 
-- requests
-- bs4
+- `requests`
+- `bs4`
 
 For testing, we used
 
-- unittest (with Mocks)
+- `unittest` (with Mocks)
