@@ -23,15 +23,19 @@ class Model:
                 self._update_cache()
 
             value_in = float(value_in)
-            for f in self.fx:
-                if f.cur_out == currency_in:
-                    result = value_in / float(f.conversion)
-                    time = f.timestamp
-            for f in self.fx:
-                if f.cur_out == currency_out:
-                    result = result * float(f.conversion)
+
+            if value_in > 0:
+                for f in self.fx:
+                    if f.cur_out == currency_in:
+                        result = value_in / float(f.conversion)
+                        time = f.timestamp
+                for f in self.fx:
+                    if f.cur_out == currency_out:
+                        result = result * float(f.conversion)
+            else:
+                raise ValueError
         except ValueError:
-            string = 'Must be a decimal.'
+            string = 'Must be a positive decimal.'
         else:
             string = 'Taken from cache with date {}'.format(time)
         finally:

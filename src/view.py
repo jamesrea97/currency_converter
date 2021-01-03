@@ -20,6 +20,7 @@ class View:
     def _create_window(self):
         ''' Creates Window for App '''
         self.root = tk.Tk()
+        self.root.title('Currency Converter')
         self._create_intro_text()
         self._create_currency_selector()
         self._create_convert_button()

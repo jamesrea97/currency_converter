@@ -21,10 +21,12 @@ class ShouldConvertCurrencies(unittest.TestCase):
             print(cls.model.fx)
 
     def test_converts_currencies(self):
-        self.assertEqual(self.model.convert(
+        self.assertEquals(self.model.convert(
             'GBP', 9, 'USD')[0], 15.0)
-        self.assertEqual(self.model.convert(
+        self.assertEquals(self.model.convert(
             'GBP', 'q', 'USD')[0], None)
+        self.assertEquals(self.model.convert(
+            'GBP', -1.0, 'USD')[0], None)
 
 
 if __name__ == "__main__":
