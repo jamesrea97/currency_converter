@@ -4,6 +4,11 @@ This project is a simple webs-scrapping Python-based Currency Converter (over 30
 
 Its UI uses `tkinter` library for the UI as displayed below:
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/59763234/103484755-8c39fe00-4df1-11eb-8bb6-aedf64f6caa6.png" />
+</p>
+
+
 The FX is cached until the next request exceeds one day. The information comes from:
 https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
 
