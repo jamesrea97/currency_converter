@@ -14,6 +14,7 @@ class View:
         self.value_in = None
         self.value_out = None
         self.convert = None
+        self.log_field = None
         self._create_window()
 
     def _create_window(self):
@@ -22,7 +23,7 @@ class View:
         self._create_intro_text()
         self._create_currency_selector()
         self._create_convert_button()
-        tk.mainloop()
+        self._create_log_field()
 
     def _create_intro_text(self):
         ''' Creates Introduction Text at top of Window '''
@@ -67,10 +68,32 @@ class View:
         self.convert.pack()
         self.value_out.pack()
 
+    def _create_log_field(self):
+        ''' Creates Log field for User '''
+        self.log_field = tk.Text(self.root, height=2, width=35)
+
+        self.log_field.insert(tk.END, 'Please enter details for conversion')
+        self.log_field.pack()
+
     def _convert(self):
+        ''' Converts currency - callbakc to controller '''
         self.controller.convert(
             self.currency_in_selector.get(),
             self.value_in.get(),
             self.currency_out_selector.get(),
-            self.value_out
         )
+
+    def run(self):
+        ''' Runs UI '''
+        tk.mainloop()
+
+    def update_view(self, currency_value, log_value):
+        ''' Updates UI '''
+        if currency_value is not None:
+            self.value_out.delete(0, "end")
+            self.value_out.insert(0, currency_value)
+        else:
+            self.value_out.delete(0, "end")
+            self.value_out.insert(0, 'N/A')
+        self.log_field.delete('1.0', tk.END)
+        self.log_field.insert(tk.END, log_value)

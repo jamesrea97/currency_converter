@@ -1,7 +1,6 @@
 from view import View
 from model import Model
-
-CURRENCIES = ['GBP', 'EUR', 'USD']
+from currencies import CURRENCIES
 
 
 class CurrencyConverter():
@@ -9,8 +8,9 @@ class CurrencyConverter():
         self.model = Model()
         self.view = View(self, CURRENCIES)
 
-    def convert(self, c_in, v_in, c_out, widget_out):
+        self.view.run()
 
-        value = self.model.convert(c_in, v_in, c_out)
-        widget_out.delete(0, "end")
-        widget_out.insert(0, value)
+    def convert(self, c_in, v_in, c_out):
+        ''' Controls conversion between Model and View '''
+        currency_value, log_value = self.model.convert(c_in, v_in, c_out)
+        self.view.update_view(currency_value, log_value)
