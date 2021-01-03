@@ -24,7 +24,13 @@ Basic Unit testing using `mock` library for the caching of webscraping is used.
 
 ## Deployment
 
-A Dockerfile has been added so that users can create a Docker Image & Docker Container to run the App.
+In order to facilate managing the dependencies of this project, a Dockerfile has been built to build an image and run a Docker container for using the Currency Converter.
+
+In order to deploy the Currency Converter, you must
+
+- Pull the project and `cd` into the project folder.
+- Run `docker build -t currency_converter .`, which builds the Docker image with all dependencies. We used a `python:3.9`, since a `python:3.9-slim-buster` does not have the required `tkinter` UI library that this project heavily uses.
+- Run `docker run -e DISPLAY=unix$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix:rw currency_converter` in order to run this on your local Unix machine. This runs the Docker container using the display of your Unix machine.
 
 ## Notable Dependencies
 
