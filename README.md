@@ -8,13 +8,15 @@ Its UI uses `tkinter` library for the UI as displayed below:
   <img src="https://user-images.githubusercontent.com/59763234/103484755-8c39fe00-4df1-11eb-8bb6-aedf64f6caa6.png" />
 </p>
 
-
-The FX is cached until the next request exceeds one day. The information comes from:
+The FX is cached until the next request exceeds one day. It is then fectched using webscraping on this website:
 https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml
 
 ## Project structure
 
-The App usesa MVC architecture to improve readability, with driver found in `main.py`
+The App uses MVC architecture to improve readability, with driver found in `main.py`.
+The Model, found in `model.py` computes the underlying currency conversions.
+The View, found in `view.py` displays the results in a simple UI for Users.
+The Controller, found in `controller.py` controls the intereaction between the Model and View.
 
 ## Testing
 
