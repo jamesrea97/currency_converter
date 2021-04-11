@@ -1,6 +1,6 @@
 # A Simple Currency Converter
 
-This project is a simple webs-scrapping Python-based Currency Converter (over 30 currencies).
+This project is a simple webs-scrapping Python-based Currency Converter (over 30 currencies). The aim was to make use of the `tkinter` librarie and showcase deployment scripts in Docker.
 
 Its UI uses `tkinter` library for the UI as displayed below:
 
